@@ -14,44 +14,54 @@ function HomePage() {
     <>
       <PageSection variant="light">
         <Title headingLevel="h1" size="2xl">
-          Welcome to Ansible UI Framework Prototyping
+          Authentication Provider Management
         </Title>
         <p>
-          This environment is set up for UX designers to prototype and experiment with
-          Ansible UI Framework components. Each demo page showcases different patterns
-          and components available in the framework.
+          Manage external authentication providers, configure single sign-on, and track
+          authentication events across your organization.
         </p>
       </PageSection>
 
       <PageSection>
         <Gallery hasGutter minWidths={{ default: '300px' }}>
           <Card isRounded>
-            <CardTitle>Getting Started</CardTitle>
+            <CardTitle>Key Features</CardTitle>
             <CardBody>
               <List>
-                <ListItem>Navigate using the sidebar menu</ListItem>
-                <ListItem>Explore different component demos</ListItem>
-                <ListItem>Copy and modify existing pages</ListItem>
-                <ListItem>Create new prototype pages in src/pages/</ListItem>
+                <ListItem>
+                  <strong>Multi-Step Provider Setup:</strong> Guided wizard for configuring Azure AD, Google, GitHub, and SAML
+                </ListItem>
+                <ListItem>
+                  <strong>Permission Management:</strong> Assign users and teams to specific providers
+                </ListItem>
+                <ListItem>
+                  <strong>Usage Analytics:</strong> Track login statistics and success rates
+                </ListItem>
+                <ListItem>
+                  <strong>Audit Logging:</strong> Monitor all authentication events and configuration changes
+                </ListItem>
               </List>
             </CardBody>
           </Card>
 
           <Card isRounded>
-            <CardTitle>Available Demos</CardTitle>
+            <CardTitle>Quick Links</CardTitle>
             <CardBody>
               <List>
                 <ListItem>
-                  <strong>Dashboard:</strong> Comprehensive dashboard with charts, stats, alerts, and more
+                  <a href="/providers" style={{ textDecoration: 'none' }}>
+                    View Authentication Providers
+                  </a>
                 </ListItem>
                 <ListItem>
-                  <strong>Table Demo:</strong> Data tables with sorting and pagination
+                  <a href="/providers/new" style={{ textDecoration: 'none' }}>
+                    Add New Provider
+                  </a>
                 </ListItem>
                 <ListItem>
-                  <strong>Form Demo:</strong> Form inputs and validation patterns
-                </ListItem>
-                <ListItem>
-                  <strong>Details Demo:</strong> Resource details and information display
+                  <a href="/audit-log" style={{ textDecoration: 'none' }}>
+                    View Audit Log
+                  </a>
                 </ListItem>
               </List>
             </CardBody>
@@ -61,6 +71,15 @@ function HomePage() {
             <CardTitle>Resources</CardTitle>
             <CardBody>
               <List>
+                <ListItem>
+                  <a
+                    href="https://ansible.github.io/ansible-ui/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ansible UI Framework Documentation
+                  </a>
+                </ListItem>
                 <ListItem>
                   <a
                     href="https://www.patternfly.org/components/all-components"
@@ -79,7 +98,6 @@ function HomePage() {
                     PatternFly Patterns
                   </a>
                 </ListItem>
-                <ListItem>See README.md for detailed instructions</ListItem>
               </List>
             </CardBody>
           </Card>

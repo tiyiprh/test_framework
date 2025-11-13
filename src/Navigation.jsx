@@ -19,10 +19,9 @@ export function AppNavigation({ children }) {
 
   const navigation = [
     { name: 'Home', path: '/' },
-    { name: 'Dashboard', path: '/dashboard' },
-    { name: 'Table Demo', path: '/table-demo' },
-    { name: 'Form Demo', path: '/form-demo' },
-    { name: 'Details Demo', path: '/details-demo' },
+    { name: 'Authentication Providers', path: '/providers' },
+    { name: 'Audit Log', path: '/audit-log' },
+    { name: 'Sample Table', path: '/sample-table' },
   ]
 
   const Header = (
@@ -30,7 +29,7 @@ export function AppNavigation({ children }) {
       <MastheadMain>
         <MastheadBrand>
           <Title headingLevel="h1" size="2xl">
-            Ansible UI Framework Prototypes
+            Auth Provider Management
           </Title>
         </MastheadBrand>
       </MastheadMain>
