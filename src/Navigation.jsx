@@ -21,7 +21,6 @@ export function AppNavigation({ children }) {
     { name: 'Home', path: '/' },
     { name: 'Authentication Providers', path: '/providers' },
     { name: 'Audit Log', path: '/audit-log' },
-    { name: 'Sample Table', path: '/sample-table' },
   ]
 
   const Header = (

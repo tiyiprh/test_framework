@@ -50,7 +50,10 @@ function ProviderDetails() {
   useEffect(() => {
     // Load provider from localStorage
     const providers = JSON.parse(localStorage.getItem('authProviders') || '[]')
+    console.log('Looking for provider with ID:', id)
+    console.log('Available providers:', providers)
     const foundProvider = providers.find((p) => p.id === parseInt(id))
+    console.log('Found provider:', foundProvider)
     
     if (foundProvider) {
       setProvider(foundProvider)
@@ -69,7 +72,24 @@ function ProviderDetails() {
   if (!provider) {
     return (
       <PageLayout>
-        <Alert variant="warning" title="Provider not found" />
+        <PageHeader
+          title="Provider Not Found"
+          description="The requested authentication provider could not be found"
+        />
+        <Alert 
+          variant="warning" 
+          title="Provider not found" 
+          style={{ margin: '2rem' }}
+        >
+          <p>The authentication provider with ID {id} does not exist or has been deleted.</p>
+          <Button 
+            variant="link" 
+            onClick={() => navigate('/providers')}
+            style={{ paddingLeft: 0, marginTop: '1rem' }}
+          >
+            Go back to providers list
+          </Button>
+        </Alert>
       </PageLayout>
     )
   }

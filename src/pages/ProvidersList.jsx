@@ -7,11 +7,15 @@ import {
   Badge,
   Flex,
   FlexItem,
+  SearchInput,
 } from '@patternfly/react-core'
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
-  PlusCircleIcon,
+  PencilAltIcon,
+  TrashIcon,
+  PowerOffIcon,
+  CheckIcon,
 } from '@patternfly/react-icons'
 
 function ProvidersList() {
@@ -19,6 +23,8 @@ function ProvidersList() {
   const [providers, setProviders] = useState([])
   const [page, setPage] = useState(1)
   const [perPage, setPerPage] = useState(20)
+  const [filterState, setFilterState] = useState({})
+  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
     // Load providers from localStorage (in real app, this would be an API call)
@@ -215,34 +221,42 @@ function ProvidersList() {
       ],
       placeholder: 'Filter by type',
     },
-    {
-      key: 'name',
-      label: 'Name',
-      type: 'string',
-      placeholder: 'Search by provider name',
-    },
   ], [])
 
-  const toolbarActions = useMemo(() => [
-    {
-      type: 0, // PageActionType.Button
-      selection: 0, // PageActionSelection.None
-      variant: 'primary',
-      label: 'Create provider',
-      onClick: () => navigate('/providers/new'),
-    },
-  ], [navigate])
+  // Filter providers based on search
+  const filteredProviders = useMemo(() => {
+    if (!searchValue) return providers
+    return providers.filter(provider => 
+      provider.name.toLowerCase().includes(searchValue.toLowerCase())
+    )
+  }, [providers, searchValue])
+
+  const toolbarActions = useMemo(
+    () => [
+      {
+        type: 0, // PageActionType.Button
+        selection: 0, // PageActionSelection.None (no selection needed)
+        variant: 'primary',
+        label: 'Create provider',
+        onClick: () => navigate('/providers/new'),
+        isPinned: true, // Pin to toolbar instead of dropdown
+      },
+    ],
+    [navigate]
+  )
 
   const rowActions = useMemo(() => [
     {
       type: 0, // PageActionType.Button
       selection: 1, // PageActionSelection.Single
+      icon: PencilAltIcon,
       label: 'Edit',
       onClick: (provider) => navigate(`/providers/${provider.id}`),
     },
     {
       type: 0, // PageActionType.Button
       selection: 1, // PageActionSelection.Single
+      icon: (provider) => provider.status === 'active' ? PowerOffIcon : CheckIcon,
       label: (provider) => provider.status === 'active' ? 'Disable' : 'Enable',
       onClick: (provider) => {
         const providers = JSON.parse(localStorage.getItem('authProviders') || '[]')
@@ -261,6 +275,7 @@ function ProvidersList() {
     {
       type: 0, // PageActionType.Button
       selection: 1, // PageActionSelection.Single
+      icon: TrashIcon,
       label: 'Delete',
       onClick: (provider) => {
         const providers = JSON.parse(localStorage.getItem('authProviders') || '[]')
@@ -324,21 +339,27 @@ function ProvidersList() {
       <PageHeader
         title="Authentication Providers"
         description="Manage external authentication providers for single sign-on"
-        headerActions={
-          <Button variant="primary" onClick={() => navigate('/providers/new')}>
-            <PlusCircleIcon /> Create provider
-          </Button>
-        }
       />
       <PageTable
         keyFn={(provider) => provider.id}
         tableColumns={tableColumns}
         toolbarFilters={toolbarFilters}
+        filterState={filterState}
+        setFilterState={setFilterState}
+        toolbarContent={
+          <SearchInput
+            placeholder="Search providers"
+            value={searchValue}
+            onChange={(_event, value) => setSearchValue(value)}
+            onClear={() => setSearchValue('')}
+            style={{ width: '300px' }}
+          />
+        }
         toolbarActions={toolbarActions}
         rowActions={rowActions}
         bulkActions={bulkActions}
-        itemCount={providers.length}
-        pageItems={providers}
+        itemCount={filteredProviders.length}
+        pageItems={filteredProviders}
         page={page}
         setPage={setPage}
         perPage={perPage}
