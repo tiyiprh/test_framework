@@ -12,7 +12,7 @@ import {
  * Copy this file to create a new prototype page:
  * 1. Copy: cp src/pages/_PageTemplate.jsx src/pages/YourPageName.jsx
  * 2. Rename the function below to match your page name
- * 3. Update the PageHeader title and description
+ * 3. Update the PageHeader title
  * 4. Add your content inside the PageLayout
  * 5. Add the page to Navigation.jsx and App.jsx
  */
@@ -21,10 +21,7 @@ function PageTemplate() {
   return (
     <PageLayout>
       {/* Page Header - Update this with your page title */}
-      <PageHeader
-        title="Your Page Title"
-        description="Brief description of what this page demonstrates"
-      />
+      <PageHeader title="Your Page Title" />
 
       {/* Main Content - Add your prototype content here */}
       <Card>

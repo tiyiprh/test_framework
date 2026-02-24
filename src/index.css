@@ -16,11 +16,31 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: stretch;
   min-width: 320px;
   min-height: 100vh;
 }
 
 #root {
   width: 100%;
+  min-height: 100vh;
+}
+
+/* No max height on pages: content grows and the window scrolls (no inner scroll / sticky footer) */
+.pf-v6-c-page {
+  height: auto;
+  min-height: 100vh;
+  max-height: none;
+  grid-template-rows: max-content auto;
+  align-self: stretch;
+}
+
+.pf-v6-c-page {
+  --pf-v6-c-page__main-container--MaxHeight: none;
+}
+
+@media screen and (max-width: calc(48rem - 1px)) {
+  .pf-v6-c-page {
+    --pf-v6-c-page__main-container--xs--MaxHeight: none;
+  }
 }

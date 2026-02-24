@@ -7,9 +7,11 @@ import FormDemo from './pages/FormDemo'
 import DetailsDemo from './pages/DetailsDemo'
 import '@patternfly/react-core/dist/styles/base.css'
 
+const basename = import.meta.env.BASE_URL
+
 function App() {
   return (
-    <Router>
+    <Router basename={basename}>
       <AppNavigation>
         <Routes>
           <Route path="/" element={<HomePage />} />

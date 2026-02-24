@@ -147,10 +147,7 @@ function DashboardDemo() {
 
   return (
     <PageLayout>
-      <PageHeader
-        title="Automation Dashboard"
-        description="Real-time overview of your automation environment"
-      />
+      <PageHeader title="Automation Dashboard" />
 
       {/* Alert Section */}
       <AlertGroup style={{ marginBottom: '24px' }}>
