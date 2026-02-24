@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import {
   Nav,
@@ -10,15 +11,17 @@ import {
   MastheadMain,
   MastheadBrand,
   MastheadContent,
-  PageSection,
-  Title,
+  MastheadToggle,
+  PageToggleButton,
 } from '@patternfly/react-core'
+import BarsIcon from '@patternfly/react-icons/dist/esm/icons/bars-icon'
 
 export function AppNavigation({ children }) {
   const location = useLocation()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
   const navigation = [
-    { name: 'Home', path: '/' },
+    { name: 'Prototype Introduction', path: '/' },
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'Table Demo', path: '/table-demo' },
     { name: 'Form Demo', path: '/form-demo' },
@@ -28,31 +31,47 @@ export function AppNavigation({ children }) {
   const Header = (
     <Masthead>
       <MastheadMain>
+        <MastheadToggle>
+          <PageToggleButton
+            variant="plain"
+            aria-label="Global navigation"
+            isSidebarOpen={isSidebarOpen}
+            onSidebarToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <BarsIcon />
+          </PageToggleButton>
+        </MastheadToggle>
         <MastheadBrand>
-          <Title headingLevel="h1" size="2xl">
-            Ansible UI Framework Prototypes
-          </Title>
+          <img
+            src={`${import.meta.env.BASE_URL}aap-logo.svg`}
+            alt="Red Hat Ansible Automation Platform"
+            style={{ height: '36px' }}
+          />
         </MastheadBrand>
       </MastheadMain>
-      <MastheadContent>
-        <span style={{ color: 'white', fontSize: '14px' }}>
-          UX Prototype Environment
-        </span>
-      </MastheadContent>
+      <MastheadContent />
     </Masthead>
   )
 
   const Sidebar = (
-    <PageSidebar>
+    <PageSidebar isSidebarOpen={isSidebarOpen}>
       <PageSidebarBody>
         <Nav aria-label="Navigation">
           <NavList>
             {navigation.map((item) => (
               <NavItem
                 key={item.path}
-                isActive={location.pathname === item.path}
+                isActive={
+                  item.path === '/'
+                    ? location.pathname === '/'
+                    : location.pathname === item.path ||
+                      location.pathname.startsWith(item.path + '/')
+                }
               >
-                <Link to={item.path} style={{ color: 'inherit', textDecoration: 'none' }}>
+                <Link
+                  to={item.path}
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
                   {item.name}
                 </Link>
               </NavItem>
@@ -63,9 +82,5 @@ export function AppNavigation({ children }) {
     </PageSidebar>
   )
 
-  return (
-    <Page header={Header} sidebar={Sidebar}>
-      <PageSection>{children}</PageSection>
-    </Page>
-  )
+  return <Page masthead={Header} sidebar={Sidebar}>{children}</Page>
 }
