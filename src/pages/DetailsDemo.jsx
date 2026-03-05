@@ -15,6 +15,7 @@ import {
 } from '@patternfly/react-core'
 import AngleLeftIcon from '@patternfly/react-icons/dist/esm/icons/angle-left-icon'
 import { JobDetailsHeaderActions } from './jobRowActions'
+import { JobStatus } from '../components/JobStatus'
 
 function BackToTableTab() {
   const navigate = useNavigate()
@@ -44,19 +45,6 @@ function DetailsDemo() {
   const location = useLocation()
   const resourceData = location.state?.resource ?? defaultResource
   const tags = Array.isArray(resourceData.tags) ? resourceData.tags : defaultResource.tags
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Success':
-        return 'green'
-      case 'Failed':
-        return 'red'
-      case 'Running':
-        return 'blue'
-      default:
-        return 'grey'
-    }
-  }
 
   const breadcrumbs = [
     { label: 'Table Demo', to: '/table-demo' },
@@ -89,9 +77,7 @@ function DetailsDemo() {
           >
             <PageDetail label="Resource ID">{resourceData.id}</PageDetail>
             <PageDetail label="Status">
-              <Label color={getStatusColor(resourceData.status)}>
-                {resourceData.status}
-              </Label>
+              <JobStatus status={resourceData.status} />
             </PageDetail>
             <PageDetail label="Name">{resourceData.name}</PageDetail>
             {resourceData.description != null && (

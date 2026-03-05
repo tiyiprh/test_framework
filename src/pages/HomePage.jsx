@@ -19,13 +19,13 @@ function HomePage() {
     <>
       <PageSection>
         <Card isRounded style={{ backgroundColor: '#0066cc', color: 'white' }}>
-          <CardBody style={{ padding: '48px' }}>
+          <CardBody style={{ padding: '24px' }}>
             <Title
               headingLevel="h1"
               size="2xl"
               style={{ color: '#fff', marginBottom: '12px' }}
             >
-              Welcome to the Ansible UX Team's Framework Prototype
+              Ansible UX Prototype: Project Name
             </Title>
             <Content
               component="p"
@@ -132,6 +132,199 @@ function HomePage() {
                 <ListItem>Ansible UI Framework (PageTable, PageDetails, etc.)</ListItem>
                 <ListItem>Collapsible masthead and sidebar navigation</ListItem>
                 <ListItem>GitLab Pages–compatible routing</ListItem>
+              </List>
+            </CardBody>
+          </Card>
+
+          <Card isRounded>
+            <CardTitle>PatternFly components used (new in this experience)</CardTitle>
+            <CardBody>
+              <Content component="p" style={{ marginBottom: '12px' }}>
+                Direct PatternFly components used in this prototype that are new to this experience:
+              </Content>
+              <List>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/search-input"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    SearchInput
+                  </Button>
+                  {' — Table toolbar search'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/dropdown"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Dropdown
+                  </Button>
+                  {' — Table toolbar actions'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/menu-toggle"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    MenuToggle
+                  </Button>
+                  {' — Select and dropdown toggles'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/popover"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Popover
+                  </Button>
+                  {' — Form field help'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/forms/form"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    FormGroupLabelHelp
+                  </Button>
+                  {' — Form label help icon (see Form component)'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/alert"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Alert / AlertGroup
+                  </Button>
+                  {' — Dashboard alerts'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/progress"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Progress
+                  </Button>
+                  {' — Dashboard metrics'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/description-list"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    DescriptionList
+                  </Button>
+                  {' — Dashboard key-value display'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/tabs"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Tabs
+                  </Button>
+                  {' — Dashboard performance metrics'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/bullseye"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Bullseye
+                  </Button>
+                  {' — Icon centering in stat cards'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/tooltip"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Tooltip
+                  </Button>
+                  {' — Dashboard system health'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/component-groups/status-and-state-indicators/status#basic-status"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Status
+                  </Button>
+                  {' — Job status indicators (Table, Details, Dashboard)'}
+                </ListItem>
+                <ListItem>
+                  <Button
+                    variant="link"
+                    component="a"
+                    href="https://www.patternfly.org/components/page"
+                    target="_blank"
+                    icon={<ExternalLinkAltIcon />}
+                    iconPosition="end"
+                    isInline
+                  >
+                    Page / Masthead / PageSidebar
+                  </Button>
+                  {' — App layout and navigation'}
+                </ListItem>
               </List>
             </CardBody>
           </Card>

@@ -32,14 +32,14 @@ import {
 } from '@patternfly/react-core'
 import {
   CheckCircleIcon,
-  ExclamationCircleIcon,
-  InProgressIcon,
   CubeIcon,
+  ExclamationCircleIcon,
   ServerIcon,
   UsersIcon,
   ClockIcon,
 } from '@patternfly/react-icons'
 import { PageLayout, PageHeader } from '@ansible/ansible-ui-framework'
+import { JobStatus } from '../components/JobStatus'
 
 function DashboardDemo() {
   const [activeTabKey, setActiveTabKey] = useState(0)
@@ -119,32 +119,6 @@ function DashboardDemo() {
     },
   ]
 
-  const getStatusIcon = (status) => {
-    switch (status) {
-      case 'success':
-        return <CheckCircleIcon color="green" />
-      case 'failed':
-        return <ExclamationCircleIcon color="red" />
-      case 'running':
-        return <InProgressIcon color="blue" />
-      default:
-        return null
-    }
-  }
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'success':
-        return 'green'
-      case 'failed':
-        return 'red'
-      case 'running':
-        return 'blue'
-      default:
-        return 'grey'
-    }
-  }
-
   return (
     <PageLayout>
       <PageHeader title="Automation Dashboard" />
@@ -219,7 +193,9 @@ function DashboardDemo() {
                     >
                       <FlexItem>
                         <Flex alignItems={{ default: 'alignItemsCenter' }} spaceItems={{ default: 'spaceItemsSm' }}>
-                          <FlexItem>{getStatusIcon(job.status)}</FlexItem>
+                          <FlexItem>
+                            <JobStatus status={job.status} iconOnly />
+                          </FlexItem>
                           <FlexItem>
                             <div>
                               <p style={{ margin: 0 }}>{job.name}</p>
@@ -231,9 +207,7 @@ function DashboardDemo() {
                         </Flex>
                       </FlexItem>
                       <FlexItem>
-                        <Label color={getStatusColor(job.status)}>
-                          {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
-                        </Label>
+                        <JobStatus status={job.status} />
                       </FlexItem>
                     </Flex>
                     <Divider />

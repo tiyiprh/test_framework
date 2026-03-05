@@ -19,6 +19,7 @@ import {
 import PlusCircleIcon from '@patternfly/react-icons/dist/esm/icons/plus-circle-icon'
 import EllipsisVIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon'
 import { getJobRowActions } from './jobRowActions'
+import { JobStatus } from '../components/JobStatus'
 
 const statusOptions = [
   { value: 'Success', label: 'Success' },
@@ -49,7 +50,11 @@ function TableDemo() {
 
   const tableColumns = [
     { header: 'Name', cell: (item) => item.name, sort: 'name' },
-    { header: 'Status', cell: (item) => item.status, sort: 'status' },
+    {
+      header: 'Status',
+      cell: (item) => <JobStatus status={item.status} />,
+      sort: 'status',
+    },
     { header: 'Created date', cell: (item) => item.created, sort: 'created' },
   ]
 
